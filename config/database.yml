@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password: kawe123
+  pool: 5
+
+development:
+  <<: *default
+  database: kawe_development
+
+
+test:
+  <<: *default
+  database: kawe_test
