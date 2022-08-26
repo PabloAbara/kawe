@@ -1,6 +1,10 @@
 <h1>Roadmap</h1>
 <% if @roadmap %>
-  <h4><%="Bienvenido al Roadmap: '#{@roadmap.title}'"%></h4>
-  <a href=<%=@roadmap.project_link%>>Click acá</a>
+  
+  <br>
+  <h4><%="El primer Roadmap creado es: '#{@roadmap.title}'"%></h4>
+  <a href=<%=@roadmap.project_link%>>Click acá para acceder a su proyecto</a>
+  <br><br>
 
+  <h6><%="El 1er checkpoint creado es: '#{@checkpoint.title}'"%></h6>
 <% end %>

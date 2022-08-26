@@ -3,6 +3,6 @@ class RoadmapController < ApplicationController
   
   def index
     @roadmap = Roadmap.get_or_Create()
-    @checkpoints = Checkpoint.get_or_Create(@roadmap)
+    @checkpoint = Checkpoint.get_or_Create(@roadmap)
   end
 end
