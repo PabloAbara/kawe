@@ -1,2 +1,10 @@
 <h1>Roadmap</h1>
-<p>Descubre cómo convertirte en un dev en 3 meses!!</p>
+<% if @roadmap %>
+  
+  <br>
+  <h4><%="El primer Roadmap creado es: '#{@roadmap.title}'"%></h4>
+  <a href=<%=@roadmap.project_link%>>Click acá para acceder a su proyecto</a>
+  <br><br>
+
+  <h6><%="El 1er checkpoint creado es: '#{@checkpoint.title}'"%></h6>
+<% end %>
