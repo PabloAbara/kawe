@@ -1,8 +1,8 @@
 class RoadmapController < ApplicationController
   before_action :authenticate_user!
   
-  def index
+  def show
     @roadmap = Roadmap.first()
-    @checkpoint = @roadmap.checkpoints.first()
+    @checkpoints = @roadmap.checkpoints
   end
 end
