@@ -6,6 +6,7 @@
       <th scope="col">Id</th>
       <th scope="col">Recurso</th>
       <th scope="col">Link</th>
+      <th scope="col">Rate</th>
     </tr>
   </thead>
   <% @checkpoint.resources.each do |resource|%>
@@ -14,7 +15,15 @@
       <th scope="row"> <%= resource.id %> </th>
       <td> <%= resource.title %></td>
       <td> <%= resource.link %></td>
+      <td>
+      <%= form_with url: rate_resource_path, model: resource, method: "post" do |form| %>
+        <%= form.hidden_field :resource_id, value: resource.id %>
+        <%= form.number_field :rating, in: 1..5, step: 1 %>      
+        <%= form.submit "Evaluar" %>
+      <% end %>
+      </td>
     </tr>
   </tbody>
   <% end %>
 </table>
+
