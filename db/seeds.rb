@@ -1,6 +1,6 @@
-Resource.create! :title => 'Página de git', :link => 'https://www.youtube.com/watch?v=PW_A-lOpVV0', :checkpoint_id => 1
-Resource.create! :title => 'Guía de Platanus', :link => 'https://la-guia.platan.us/setup/proyectos/git', :checkpoint_id => 1
-p "Terminando de sembrar"
+#Resource.create! :title => 'Página de git', :link => 'https://www.youtube.com/watch?v=PW_A-lOpVV0', :checkpoint_id => 1
+#Resource.create! :title => 'Guía de Platanus', :link => 'https://la-guia.platan.us/setup/proyectos/git', :checkpoint_id => 1
+#p "Terminando de sembrar"
 
 
 #create_table "resources", force: :cascade do |t|
