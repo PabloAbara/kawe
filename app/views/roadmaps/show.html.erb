@@ -1,0 +1,21 @@
+<% if @roadmap %>
+  <h1><%= @roadmap.title %></h1>
+  <a href="<%= @roadmap.project_link %>">
+    Click acá para acceder a su proyecto
+  </a>
+
+  <hr>
+
+  <% @roadmap.checkpoints.each_with_index do |checkpoint, index| %>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        name="checkpoint[<%= index %>]"
+      >
+      <label class="form-check-label">
+        <%= checkpoint.title %>
+      </label>
+    </div>
+  <% end %>
+<% end %>
