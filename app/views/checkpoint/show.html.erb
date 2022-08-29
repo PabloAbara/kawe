@@ -16,9 +16,10 @@
       <td> <%= resource.title %></td>
       <td> <%= resource.link %></td>
       <td>
-      <%= form_with do |form| %>
-        <%= form.number_field :rating, in: 1..5, step: 1 %>
-        <%= form.label :rating, "Evaluación" %>
+      <%= form_with model: resource do |form| %>
+        <%= form.hidden_field :resource_id, value: resource.id %>
+        <%= form.number_field :rating, in: 1..5, step: 1 %>      
+        <%= form.submit "Evaluar" %>
       <% end %>
       </td>
     </tr>
