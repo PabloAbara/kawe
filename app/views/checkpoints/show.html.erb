@@ -29,11 +29,30 @@
   <% end %>
 </table>
 
-<%= form_with url: create_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: Resource, method: "post" do |form| %>
-  <%= form.label :label_title, "Título"%>
-  <%= form.text_field :title, in: 1..5, step: 1 %>
-  <%= form.label :label_link, "Link"%>
-  <!-- TODO: change to url_field -->
-  <%= form.text_field :link, in: 1..5, step: 1 %>
-  <%= form.submit "Crear recurso" %>
-<% end %>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNewResourceModal">
+  + Nuevo recurso
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="AddNewResourceModal" tabindex="-1" aria-labelledby="resourceModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Añade un nuevo recurso</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with url: create_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: Resource, method: "post" do |form| %>
+          <%= form.label :label_title, "Título"%>
+          <%= form.text_field :title, in: 1..5, step: 1 %>
+          <%= form.label :label_link, "Link"%>
+          <%= form.url_field :link, in: 1..5, step: 1 %>
+          <%= form.submit "Crear" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
