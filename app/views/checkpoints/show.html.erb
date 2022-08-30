@@ -16,7 +16,7 @@
       <th scope="row"> <%= resource.id %> </th>
       <td> <%= resource.title %></td>
       <td> <%= resource.link %></td>
-      <td> <%= ResourceRatingCalculator.calculate_resource_rating(resource).round(2) %> </td>
+      <td> <%= ResourceRatingCalculator.calculate_resource_rating(resource) %> </td>
       <td>
       <%= form_with url: rate_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: resource, method: "post" do |form| %>
         <%= form.hidden_field :resource_id, value: resource.id %>
@@ -24,9 +24,16 @@
         <%= form.submit "Evaluar" %>
       <% end %>
       </td>
-    </tr>
+    </tr>    
   </tbody>
   <% end %>
 </table>
 
-
+<%= form_with url: create_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: Resource, method: "post" do |form| %>
+  <%= form.label :label_title, "Título"%>
+  <%= form.text_field :title, in: 1..5, step: 1 %>
+  <%= form.label :label_link, "Link"%>
+  <!-- TODO: change to url_field -->
+  <%= form.text_field :link, in: 1..5, step: 1 %>
+  <%= form.submit "Crear recurso" %>
+<% end %>

@@ -16,6 +16,16 @@ class CheckpointsController < ApplicationController
     redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint)
   end
 
+  def create_resource
+    Resource.create!(
+      checkpoint_id: @checkpoint.id,
+      title: new_resource_params[:title],
+      link: new_resource_params[:link],
+    )
+
+    redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint)
+  end
+
   private
   
   def set_roadmap
@@ -33,4 +43,9 @@ class CheckpointsController < ApplicationController
   def resource_params
     params.require(:resource).permit(:resource_id, :rating)
   end
+
+  def new_resource_params
+    params.require(:resource).permit(:title, :link)
+  end
+
 end
