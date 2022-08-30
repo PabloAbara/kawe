@@ -1,3 +1,5 @@
+# rubocop:disable all
+
 # frozen_string_literal: true
 
 # This file should contain all the record creation needed to seed the database with its default values.
@@ -62,3 +64,5 @@ completed4 = CompletedCheckpoint.find_or_create_by!(user_id: users[2].id, checkp
 completed5 = CompletedCheckpoint.find_or_create_by!(user_id: users[2].id, checkpoint_id: c3.id)
 
 puts 'Seeding done.'
+
+# rubocop:disable all
