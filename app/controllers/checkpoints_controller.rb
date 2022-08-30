@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CheckpointsController < ApplicationController
   before_action :set_roadmap
   before_action :set_checkpoint

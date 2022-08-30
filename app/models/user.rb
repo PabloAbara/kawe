@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_many :completed_checkpoints
   has_many :checkpoints, through: :completed_checkpoints

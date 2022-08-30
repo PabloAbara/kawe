@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCompletedCheckpoints < ActiveRecord::Migration[7.0]
   def change
     create_table :completed_checkpoints do |t|
