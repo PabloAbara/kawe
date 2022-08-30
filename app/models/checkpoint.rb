@@ -4,4 +4,6 @@ class Checkpoint < ApplicationRecord
   has_many :resources, dependent: :destroy
   has_many :completed_checkpoints, dependent: :destroy
   has_many :users, through: :completed_checkpoints
+
+  validates :title, presence: true
 end
