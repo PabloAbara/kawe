@@ -6,35 +6,41 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-puts "Seeding..."
+puts 'Seeding...'
 
 # users
 users = []
 [1, 2, 3].each do |a|
-    user = User.where(email: "test#{a}@fin.cl").first
-    if user
-        users.append(user)
-    else
-        new_user = User.create!(email: "test#{a}@fin.cl", password: "123456", password_confirmation: "123456")
-        users.append(new_user)
-    end
+  user = User.where(email: "test#{a}@fin.cl").first
+  if user
+    users.append(user)
+  else
+    new_user = User.create!(email: "test#{a}@fin.cl", password: '123456', password_confirmation: '123456')
+    users.append(new_user)
+  end
 end
 
 # Roadmap
 rmap = Roadmap.find_or_create_by!(title: 'El camino para convertirte en dev en 3 meses', project_link: 'https://fintual.notion.site/Paraffin-7eeb003d91614a2cbed2a2e260efde61')
 
 # Checkpoints
-c1 = Checkpoint.find_or_create_by!(title:'Intro to Git', roadmap_id: rmap.id)
-c2 = Checkpoint.find_or_create_by!(title:'Intro to Docker', roadmap_id: rmap.id)
-c3 = Checkpoint.find_or_create_by!(title:'Intro to Ruby', roadmap_id: rmap.id)
+c1 = Checkpoint.find_or_create_by!(title: 'Intro to Git', roadmap_id: rmap.id)
+c2 = Checkpoint.find_or_create_by!(title: 'Intro to Docker', roadmap_id: rmap.id)
+c3 = Checkpoint.find_or_create_by!(title: 'Intro to Ruby', roadmap_id: rmap.id)
 
 # resources
-r1 = Resource.find_or_create_by!(title: "Guía de trabajo GIT", link: "https://www.freecodecamp.org/espanol/news/git-101-un-flujo-de-trabajo-de-git/", checkpoint_id: c1.id)
-r2 = Resource.find_or_create_by!(title: "GIT para dummies", link: "https://www.freecodecamp.org/espanol/news/git-101-un-flujo-de-trabajo-de-git/", checkpoint_id: c1.id)
-r3 = Resource.find_or_create_by!(title: "Docker 101", link: "https://www.docker.com/101-tutorial/", checkpoint_id: c2.id)
-r4 = Resource.find_or_create_by!(title: "Tutorial Docker", link: "https://www.tutorialspoint.com/docker/index.htm", checkpoint_id: c2.id)
-r5 = Resource.find_or_create_by!(title: "Ruby Quickstart", link: "https://www.ruby-lang.org/es/documentation/quickstart/", checkpoint_id: c3.id)
-r6 = Resource.find_or_create_by!(title: "Tutorial Ruby", link: "https://www.tutorialspoint.com/ruby/index.htm", checkpoint_id: c3.id)
+r1 = Resource.find_or_create_by!(title: 'Guía de trabajo GIT',
+                                 link: 'https://www.freecodecamp.org/espanol/news/git-101-un-flujo-de-trabajo-de-git/', checkpoint_id: c1.id)
+r2 = Resource.find_or_create_by!(title: 'GIT para dummies',
+                                 link: 'https://www.freecodecamp.org/espanol/news/git-101-un-flujo-de-trabajo-de-git/', checkpoint_id: c1.id)
+r3 = Resource.find_or_create_by!(title: 'Docker 101', link: 'https://www.docker.com/101-tutorial/',
+                                 checkpoint_id: c2.id)
+r4 = Resource.find_or_create_by!(title: 'Tutorial Docker', link: 'https://www.tutorialspoint.com/docker/index.htm',
+                                 checkpoint_id: c2.id)
+r5 = Resource.find_or_create_by!(title: 'Ruby Quickstart',
+                                 link: 'https://www.ruby-lang.org/es/documentation/quickstart/', checkpoint_id: c3.id)
+r6 = Resource.find_or_create_by!(title: 'Tutorial Ruby', link: 'https://www.tutorialspoint.com/ruby/index.htm',
+                                 checkpoint_id: c3.id)
 
 # resource_ratings
 rating1 = ResourceRating.find_or_create_by!(user_id: users[0].id, resource_id: r1.id, rating: 5)
@@ -53,4 +59,4 @@ completed3 = CompletedCheckpoint.find_or_create_by!(user_id: users[1].id, checkp
 completed4 = CompletedCheckpoint.find_or_create_by!(user_id: users[2].id, checkpoint_id: c1.id)
 completed5 = CompletedCheckpoint.find_or_create_by!(user_id: users[2].id, checkpoint_id: c3.id)
 
-puts "Seeding done." 
+puts 'Seeding done.'

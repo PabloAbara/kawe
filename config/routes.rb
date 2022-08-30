@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'roadmaps#show'
 
-  resources :roadmaps, only: [:index, :show] do
+  resources :roadmaps, only: %i[index show] do
     resources :checkpoints, only: [:show] do
       member do
         post 'rate_resource'

@@ -3,13 +3,13 @@ class CheckpointsController < ApplicationController
   before_action :set_checkpoint
 
   def show
-    #@resources_rating = ResourceRatingCalculator.new
+    # @resources_rating = ResourceRatingCalculator.new
   end
 
   def rate_resource
     ResourceRating.create!(
-      user_id: current_user.id, 
-      resource_id: resource_params[:resource_id].to_i, 
+      user_id: current_user.id,
+      resource_id: resource_params[:resource_id].to_i,
       rating: resource_params[:rating].to_i
     )
 
@@ -17,7 +17,7 @@ class CheckpointsController < ApplicationController
   end
 
   private
-  
+
   def set_roadmap
     @roadmap = Roadmap.find(roadmap_param)
   end
