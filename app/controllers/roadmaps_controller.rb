@@ -15,6 +15,6 @@ class RoadmapsController < ApplicationController
   end
 
   def default_roadmap
-    Roadmap.default_roadmap
+    Roadmap.first
   end
 end

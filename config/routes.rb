@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  get 'checkpoint/show'
   devise_for :users
-  root 'roadmap#show'
+  root 'roadmaps#show'
 
   resources :roadmaps, only: [:index, :show] do
     resources :checkpoints, only: [:show] do
-      post 'rate_resource'
+      member do
+        post 'rate_resource'
+      end
     end
   end
 
