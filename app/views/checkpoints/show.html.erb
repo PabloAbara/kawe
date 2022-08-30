@@ -16,7 +16,7 @@
       <td> <%= resource.title %></td>
       <td> <%= resource.link %></td>
       <td>
-      <%= form_with url: rate_resource_path, model: resource, method: "post" do |form| %>
+      <%= form_with url: rate_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: resource, method: "post" do |form| %>
         <%= form.hidden_field :resource_id, value: resource.id %>
         <%= form.number_field :rating, in: 1..5, step: 1 %>      
         <%= form.submit "Evaluar" %>
@@ -26,4 +26,3 @@
   </tbody>
   <% end %>
 </table>
-

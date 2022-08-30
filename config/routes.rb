@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-  get 'checkpoint/show'
   devise_for :users
-  root 'roadmap#show'
-  post 'rate_resource' , to: 'checkpoint#rate_resource'
+  root 'roadmaps#show'
+
+  resources :roadmaps, only: [:index, :show] do
+    resources :checkpoints, only: [:show] do
+      member do
+        post 'rate_resource'
+      end
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
