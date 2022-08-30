@@ -8,7 +8,6 @@
       <th scope="col">Link</th>
       <th scope="col">Current Rating</th>
       <th scope="col">Rate</th>
-      <th scope="col">Rate</th>
     </tr>
   </thead>
   <% @checkpoint.resources.each do |resource|%>
@@ -17,7 +16,7 @@
       <th scope="row"> <%= resource.id %> </th>
       <td> <%= resource.title %></td>
       <td> <%= resource.link %></td>
-      <td>#</td>
+      <td> <%= ResourceRatingCalculator.calculate_resource_rating(resource).round(2) %> </td>
       <td>
       <%= form_with url: rate_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: resource, method: "post" do |form| %>
         <%= form.hidden_field :resource_id, value: resource.id %>
