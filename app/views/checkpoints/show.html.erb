@@ -15,7 +15,7 @@
     <tr>
       <th scope="row"> <%= resource.id %> </th>
       <td> <%= resource.title %></td>
-      <td> <%= resource.link %></td>
+      <td> <a class="btn btn-secondary" href=<%= resource.link %> target="_blank">Go!</a> </td>
       <td> <%= ResourceRatingCalculator.calculate_resource_rating(resource) %> </td>
       <td>
       <%= form_with url: rate_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: resource, method: "post" do |form| %>
