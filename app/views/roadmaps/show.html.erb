@@ -15,7 +15,7 @@
   <tbody>
     <tr>
       <th scope="row"> <%= checkpoint.id %> </th>
-      <td> <%= checkpoint.title %> </td>
+      <td onclick="location.href='<%= roadmap_checkpoint_path(@roadmap,checkpoint) %>'"> <%= checkpoint.title %> </td>
       <td>
       <% if checkpoint.completed_checkpoints.exists?(user_id: current_user.id) %>
         <%= button_to "Marcar como incompleto", roadmap_uncomplete_checkpoint_path(@roadmap,checkpoint_id: checkpoint.id), :class=> "btn btn-outline-light",:method => :delete %>
@@ -27,3 +27,5 @@
   </tbody>
   <% end %>
 </table>
+
+
