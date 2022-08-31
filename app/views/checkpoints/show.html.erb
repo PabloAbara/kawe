@@ -20,7 +20,7 @@
       <td>
       <%= form_with url: rate_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: resource, method: "post" do |form| %>
         <%= form.hidden_field :resource_id, value: resource.id %>
-        <%= form.number_field :rating, in: 1..5, step: 1 %>      
+        <%= form.number_field :rating, in: 1..5, step: 1, required: true %>
         <%= form.submit "Evaluar" %>
       <% end %>
       </td>
@@ -44,10 +44,10 @@
       </div>
       <div class="modal-body">
         <%= form_with url: create_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: Resource, method: "post" do |form| %>
-          <%= form.label :label_title, "Título"%>
-          <%= form.text_field :title, in: 1..5, step: 1 %>
-          <%= form.label :label_link, "Link"%>
-          <%= form.url_field :link, in: 1..5, step: 1 %>
+          <%= form.label :label_title, "Título" %>
+          <%= form.text_field :title %>
+          <%= form.label :label_link, "Link" %>
+          <%= form.url_field :link %>
           <%= form.submit "Crear" %>
         <% end %>
       </div>
