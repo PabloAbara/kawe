@@ -53,9 +53,14 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "dotenv-rails"
   gem "rspec-rails"
-  gem 'dotenv-rails'
+  gem "rubocop", require: false
+  gem "rubocop-flexport", "0.10.2", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
 end
 
 group :development do
