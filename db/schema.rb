@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_31_171653) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_31_212022) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_171653) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["checkpoint_id"], name: "index_completed_checkpoints_on_checkpoint_id"
+    t.index ["user_id", "checkpoint_id"], name: "index_completed_checkpoints_on_user_id_and_checkpoint_id", unique: true
     t.index ["user_id"], name: "index_completed_checkpoints_on_user_id"
   end
 
@@ -38,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_171653) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["resource_id"], name: "index_resource_ratings_on_resource_id"
+    t.index ["user_id", "resource_id"], name: "index_resource_ratings_on_user_id_and_resource_id", unique: true
     t.index ["user_id"], name: "index_resource_ratings_on_user_id"
   end
 
