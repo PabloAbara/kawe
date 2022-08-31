@@ -1,22 +1,20 @@
 class RoadmapsController < ApplicationController
   before_action :authenticate_user!
   before_action :redirect_to_show, only: [:index]
-  before_action :set_roadmap, only: [:show, :complete_checkpoint, :uncomplete_checkpoint]
+  before_action :set_roadmap, only: %i[show complete_checkpoint uncomplete_checkpoint]
 
   def index; end
 
   def show; end
 
   def complete_checkpoint
-    CompletedCheckpoint.create!(
-      user_id: current_user.id,
-      checkpoint_id: params[:checkpoint_id],
-    )
+    CompletedCheckpoint.create!(user_id: current_user.id, checkpoint_id: params[:checkpoint_id])
     redirect_to roadmap_path(@roadmap)
   end
 
   def uncomplete_checkpoint
-    @roadmap.checkpoints.find(params[:checkpoint_id]).completed_checkpoints.find_by(user_id: current_user.id).destroy
+    checkpoint = @roadmap.checkpoints.find(params[:checkpoint_id])
+    checkpoint.completed_checkpoints.find_by(user_id: current_user.id).destroy!
     redirect_to roadmap_path(@roadmap)
   end
 
