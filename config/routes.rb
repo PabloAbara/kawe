@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
   root "roadmaps#show"
 
   resources :roadmaps, only: %i[index show] do
