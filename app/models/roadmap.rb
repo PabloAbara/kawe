@@ -3,5 +3,6 @@ class Roadmap < ApplicationRecord
 
   validates :title, presence: true
   validates :project_link, presence: true
-  validates_format_of :project_link, :with => /\A(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?\Z/i
+  validates :project_link,
+            format: { with: %r{\A(https?://)?([\da-z.-]+)\.([a-z.]{2,6})([/\w.-]*)*/?\Z}i }
 end
