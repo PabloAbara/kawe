@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :checkpoints, only: [:show] do
       member do
         post 'rate_resource'
+        post 'create_resource'
       end
     end
   end
