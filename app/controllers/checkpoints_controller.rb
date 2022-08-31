@@ -12,7 +12,6 @@ class CheckpointsController < ApplicationController
       resource_id: resource_params[:resource_id].to_i,
       rating: resource_params[:rating].to_i
     )
-
     redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint)
   end
 
@@ -22,7 +21,6 @@ class CheckpointsController < ApplicationController
       title: new_resource_params[:title],
       link: new_resource_params[:link]
     )
-
     redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint)
   end
 

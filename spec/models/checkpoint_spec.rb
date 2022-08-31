@@ -12,8 +12,8 @@ RSpec.describe Checkpoint, type: :model do
     )
   end
 
-  context "when happy path" do
-    it "is valid with valid attributes" do
+  context "with valid attributes" do
+    it do
       expect(subject.valid?).to be(true)
     end
   end
