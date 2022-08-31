@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   root "roadmaps#show"
 
   resources :roadmaps, only: %i[index show] do
+    post "complete_checkpoint"
+    delete "uncomplete_checkpoint"
     resources :checkpoints, only: [:show] do
       member do
-        post "rate_resource"
         post "create_resource"
+        post "rate_resource"
       end
     end
   end
