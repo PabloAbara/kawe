@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_25_201110) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_31_132001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checkpoints", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "roadmap_id", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_201110) do
   create_table "resource_ratings", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "resource_id", null: false
-    t.integer "rating"
+    t.integer "rating", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["resource_id"], name: "index_resource_ratings_on_resource_id"
@@ -42,8 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_201110) do
   end
 
   create_table "resources", force: :cascade do |t|
-    t.string "title"
-    t.string "link"
+    t.string "title", null: false
+    t.string "link", null: false
     t.bigint "checkpoint_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,8 +51,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_201110) do
   end
 
   create_table "roadmaps", force: :cascade do |t|
-    t.string "title"
-    t.string "project_link"
+    t.string "title", null: false
+    t.string "project_link", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
