@@ -152,3 +152,6 @@ RSpec/StubbedMock:
 
 Gemspec/DependencyVersion:
   Enabled: true
+
+RSpec/NamedSubject:
+  Enabled: false
