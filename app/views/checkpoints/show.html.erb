@@ -45,9 +45,9 @@
       <div class="modal-body">
         <%= form_with url: create_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: Resource, method: "post" do |form| %>
           <%= form.label :label_title, "Título" %>
-          <%= form.text_field :title %>
+          <%= form.text_field :title, required: true %>
           <%= form.label :label_link, "Link" %>
-          <%= form.url_field :link %>
+          <%= form.url_field :link, required: true %>
           <%= form.submit "Crear" %>
         <% end %>
       </div>
