@@ -159,3 +159,6 @@ RSpec/NamedSubject:
 RSpec/LetSetup:
   Enabled: false
 
+
+Rails/I18nLocaleTexts:
+  Enabled: false

@@ -3,7 +3,6 @@ class Resource < ApplicationRecord
   has_many :resource_ratings, dependent: :destroy
 
   validates :title, presence: true
-  validates :link, presence: true, uniqueness: {
-    message: "Link ya existe"
-  }
+  validates :link, presence: true
+  validates :link, uniqueness: { message: "ya existe" }
 end
