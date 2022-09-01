@@ -8,7 +8,7 @@ class RoadmapsController < ApplicationController
   def show; end
 
   def complete_checkpoint
-    #add validator of checkpoint belonging
+    # add validator of checkpoint belonging
     CompletedCheckpoint.create!(user_id: current_user.id, checkpoint_id: params[:checkpoint_id])
     redirect_to roadmap_path(@roadmap)
   end
