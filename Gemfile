@@ -51,13 +51,13 @@ gem "devise", "~> 4.8", ">= 4.8.1"
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "dotenv-rails"
+  gem "factory_bot_rails"
   gem "rspec-rails"
   gem "rubocop", require: false
   gem "rubocop-flexport", "0.10.2", require: false
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
-  gem 'factory_bot_rails'
 end
 
 group :development do
