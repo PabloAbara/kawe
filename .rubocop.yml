@@ -155,3 +155,7 @@ Gemspec/DependencyVersion:
 
 RSpec/NamedSubject:
   Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
