@@ -2,6 +2,7 @@ class CheckpointsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_roadmap
   before_action :set_checkpoint
+  
 
   def show
     # @resources_rating = ResourceRatingCalculator.new

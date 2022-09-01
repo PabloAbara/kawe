@@ -6,8 +6,8 @@
       <th scope="col">Id</th>
       <th scope="col">Recurso</th>
       <th scope="col">Link</th>
-      <th scope="col">Current Rating</th>
-      <th scope="col">Rate</th>
+      <th scope="col">Current Avg Rating</th>
+      <th scope="col">Rate / Your Rating</th>
     </tr>
   </thead>
   <% @checkpoint.resources.each do |resource|%>
@@ -18,10 +18,14 @@
       <td> <a class="btn btn-secondary" href=<%= resource.link %> target="_blank">Go!</a> </td>
       <td> <%= ResourceRatingCalculator.calculate_resource_rating(resource) %> </td>
       <td>
-      <%= form_with url: rate_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: resource, method: "post" do |form| %>
-        <%= form.hidden_field :resource_id, value: resource.id %>
-        <%= form.number_field :rating, in: 1..5, step: 1, required: true %>
-        <%= form.submit "Evaluar" %>
+      <% if current_user.resource_ratings.find_by(resource: resource).present? %>
+        <%= current_user.resource_ratings.find_by(resource: resource).rating %>
+      <% else %>
+        <%= form_with url: rate_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: resource, method: "post" do |form| %>
+          <%= form.hidden_field :resource_id, value: resource.id %>
+          <%= form.number_field :rating, in: 1..5, step: 1, required: true %>
+          <%= form.submit "Evaluar" %>
+        <% end %>
       <% end %>
       </td>
     </tr>    
