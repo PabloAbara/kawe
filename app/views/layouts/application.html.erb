@@ -16,6 +16,13 @@
   <body>
   <div>
     <div class="container">
+      <% if params[:error].present? %>
+        <div><%= params[:error] %></div>
+      <% end %>
+
+      <% if params[:message].present? %>
+        <div><%= params[:message] %></div>
+      <% end %>
       <%= yield %>
     </div>
   </div>

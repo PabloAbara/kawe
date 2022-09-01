@@ -8,12 +8,20 @@ class RoadmapsController < ApplicationController
   def show; end
 
   def complete_checkpoint
-    CompletedCheckpoint.create!(user_id: current_user.id, checkpoint_id: params[:checkpoint_id])
-    redirect_to roadmap_path(@roadmap)
+    completed_checkpoint = CompletedCheckpoint.create(
+      user: current_user,
+      checkpoint_id: params[:checkpoint_id2]
+    )
+
+    if completed_checkpoint.valid?
+      redirect_to roadmap_path(@roadmap, message: 'Enhorabuena')
+    else
+      redirect_to roadmap_path(@roadmap, error: completed_checkpoint.errors.first.inspect)
+    end
   end
 
   def uncomplete_checkpoint
-    checkpoint = @roadmap.checkpoints.find(params[:checkpoint_id])
+    checkpoint = Checkpoint.find(params[:checkpoint_id])
     checkpoint.completed_checkpoints.find_by(user_id: current_user.id).destroy!
     redirect_to roadmap_path(@roadmap)
   end

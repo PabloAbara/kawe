@@ -1,8 +1,11 @@
 <h1><%= @roadmap.title %></h1>
+
 <a href="<%= @roadmap.project_link %>" target="_blank">
   Click acá para acceder a su proyecto
 </a>
+
 <hr>
+
 <table class="table table-dark table-striped">
   <thead>
     <tr>
@@ -14,16 +17,34 @@
   <% @roadmap.checkpoints.each do |checkpoint| %>
   <tbody>
     <tr>
-      <th scope="row"> <%= checkpoint.id %> </th>
-      <td onclick="location.href='<%= roadmap_checkpoint_path(@roadmap,checkpoint) %>'"> <%= checkpoint.title %> </td>
+      <th scope="row"><%= checkpoint.id %></th>
       <td>
-      <% if checkpoint.completed_checkpoints.exists?(user_id: current_user.id) %>
-        <%= button_to "Marcar como incompleto", roadmap_uncomplete_checkpoint_path(@roadmap,checkpoint_id: checkpoint.id), :class=> "btn btn-outline-light",:method => :delete %>
-      <% else %>
-        <%= button_to "Marcar como completo", roadmap_complete_checkpoint_path(@roadmap,checkpoint_id: checkpoint.id), :class=> "btn btn-outline-light",:method => :post %>
-      <% end %>
+        <%= link_to checkpoint.title, roadmap_checkpoint_path(@roadmap, checkpoint) %>
       </td>
-    </tr>    
+      <td>
+        <% if checkpoint.completed_checkpoints.exists?(user_id: current_user.id) %>
+          <%=
+            button_to(
+              "Marcar como incompleto",
+              roadmap_uncomplete_checkpoint_path(@roadmap),
+              params: { checkpoint_id: checkpoint.id },
+              class: "btn btn-outline-light",
+              method: :delete
+            )
+          %>
+        <% else %>
+          <%=
+            button_to(
+              "Marcar como completo",
+              roadmap_complete_checkpoint_path(@roadmap),
+              params: { checkpoint_id: checkpoint.id },
+              class: "btn btn-outline-light",
+              method: :post
+            )
+          %>
+        <% end %>
+      </td>
+    </tr>
   </tbody>
   <% end %>
 </table>
