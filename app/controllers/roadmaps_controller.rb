@@ -8,9 +8,12 @@ class RoadmapsController < ApplicationController
   def show; end
 
   def complete_checkpoint
-    # add validator of checkpoint belonging
-    CompletedCheckpoint.create!(user_id: current_user.id, checkpoint_id: params[:checkpoint_id])
-    redirect_to roadmap_path(@roadmap)
+    if params[:checkpoint_id].present? && @roadmap.checkpoints.find(params[:checkpoint_id]).present?
+      CompletedCheckpoint.create!(user_id: current_user.id, checkpoint_id: params[:checkpoint_id])
+      redirect_to roadmap_path(@roadmap)
+    else
+      redirect_to roadmap_path(@roadmap, error: "No encuentra checkpoint")
+    end
   end
 
   def uncomplete_checkpoint

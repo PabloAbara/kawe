@@ -19,8 +19,18 @@ RSpec.describe RoadmapsController, type: :request do
   describe "show" do
     let!(:checkpoint) { create(:checkpoint, roadmap: roadmap) }
 
-    it "check link existance with include"
-    it "check title existance with include"
+    context "with valid roadmap" do 
+      it "checks link showing" do
+        get roadmap_path(roadmap)
+        
+        expect(response.body).to include "https://github.com/PabloAbara/kawe"
+      end
+      it "checks title showing" do 
+        get roadmap_path(roadmap)
+        
+        expect(response.body).to include "Kawe"
+      end
+    end
 
     context "with completed checkpoint" do
       let!(:completed_checkpoint) do
@@ -44,7 +54,14 @@ RSpec.describe RoadmapsController, type: :request do
   end
 
   describe "post complete_checkpoint" do
-    it "complete_checkpoint_route"
+    context "without valid checkpoint_id" do 
+      it do #redirect with error messagex
+        post roadmap_complete_checkpoint_path(roadmap)
+
+        expect(response.body).to include "No+encuentra+checkpoint"
+        #TODO: ¿Es correcto? 
+      end
+    end
   end
 
   describe "delete uncomplete_checkpoint" do
