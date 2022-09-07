@@ -14,8 +14,6 @@ RSpec.describe CheckpointsController, type: :request do
       it "gets resources" do
         get roadmap_checkpoint_path(roadmap, checkpoint)
         expect(response).to have_http_status(200)
-        expect(response.body).to include("Recurso")
-        expect(response.body).to include("Link")
         expect(response.body).to include("Current Avg Rating")
         expect(response.body).to include("Rate / Your Rating")
       end

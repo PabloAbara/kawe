@@ -161,7 +161,13 @@ RSpec/LetSetup:
 
 Rails/I18nLocaleTexts:
   Enabled: false
-  
+
 RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/Rails/HttpStatus:
+  Enabled: false
+
+RSpec/PredicateMatcher:
   Enabled: false
 
