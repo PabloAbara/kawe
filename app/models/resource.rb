@@ -15,5 +15,7 @@ class Resource < ApplicationRecord
 
   validates :title, presence: true
   validates :link, presence: true
-  validates :link, uniqueness: { message: "ya existe" }
+  validates :link,
+            uniqueness: { scope: :checkpoint_id,
+                          message: "Ya existe el link creado para este checkpoint" }
 end
