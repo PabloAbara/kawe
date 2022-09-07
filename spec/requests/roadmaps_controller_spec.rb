@@ -30,7 +30,7 @@ RSpec.describe RoadmapsController, type: :request do
       it do
         get roadmap_path(roadmap)
 
-        expect(response.body).to include "Marcar como incompleto"
+        expect(response.body).to include "Incompleto 👮🏻‍♂️"
       end
     end
 
@@ -38,7 +38,7 @@ RSpec.describe RoadmapsController, type: :request do
       it do
         get roadmap_path(roadmap)
 
-        expect(response.body).to include "Marcar como completo"
+        expect(response.body).to include "Completo ✅"
       end
     end
   end

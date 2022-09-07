@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :checkpoint do
     title { "GitHub" }
-    roadmap
+    association :roadmap
   end
 end
