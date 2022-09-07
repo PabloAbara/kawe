@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe CheckpointsController, type: :request do
-  describe 'GET/show' do
+  describe "GET/show" do
     let!(:user) { create(:user) }
     let!(:roadmap) { create(:roadmap) }
     let!(:checkpoint) { create(:checkpoint, roadmap: roadmap) }
@@ -10,10 +10,10 @@ RSpec.describe CheckpointsController, type: :request do
       sign_in user
     end
 
-    context 'when accesing to the checkpoint view' do
-      it 'gets view' do
-        get roadmap_checkpoint_path(roadmap, checkpoint) 
-        expect(response).to have_http_status(:success)
+    context "when accesing to the checkpoint view" do
+      it "gets view" do
+        get roadmap_checkpoint_path(roadmap, checkpoint)
+        expect(response.has_http_status?(:success)).to be(true)
         expect(response.body).to include("Current Avg Rating")
       end
     end
