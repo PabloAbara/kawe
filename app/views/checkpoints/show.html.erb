@@ -23,8 +23,8 @@
       <% else %>
         <%= form_with url: rate_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: resource, method: "post" do |form| %>
           <%= form.hidden_field :resource_id, value: resource.id %>
-          <%= form.number_field :rating, in: 1..5, step: 1, required: true %>
-          <%= form.submit "Evaluar" %>
+          <%= form.number_field :rating, in: 1..5, step: 1, required: true,  :class => 'input-rating' %>
+          <%= form.submit "Evaluar", :class => 'btn btn-primary evaluate-button' %>
         <% end %>
       <% end %>
       </td>

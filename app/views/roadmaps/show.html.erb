@@ -15,12 +15,16 @@
   <tbody>
     <tr>
       <th scope="row"> <%= checkpoint.id %> </th>
-      <td onclick="location.href='<%= roadmap_checkpoint_path(@roadmap,checkpoint) %>'"> <%= checkpoint.title %> </td>
+      <td><a href='<%= roadmap_checkpoint_path(@roadmap,checkpoint) %>' class="checkpoint-link" >
+  <%= checkpoint.title %>
+</a></td>
+      
+     
       <td>
       <% if checkpoint.completed_checkpoints.exists?(user_id: current_user.id) %>
-        <%= button_to "Marcar como incompleto", roadmap_uncomplete_checkpoint_path(@roadmap,checkpoint_id: checkpoint.id), :class=> "btn btn-outline-light",:method => :delete %>
+        <%= button_to "Incompleto 👮🏻‍♂️", roadmap_uncomplete_checkpoint_path(@roadmap,checkpoint_id: checkpoint.id), :class=> "btn btn-outline-light",:method => :delete %>
       <% else %>
-        <%= button_to "Marcar como completo", roadmap_complete_checkpoint_path(@roadmap,checkpoint_id: checkpoint.id), :class=> "btn btn-outline-light",:method => :post %>
+        <%= button_to "Completo ✅", roadmap_complete_checkpoint_path(@roadmap,checkpoint_id: checkpoint.id), :class=> "btn btn-outline-light active-checkpoint-button",:method => :post %>
       <% end %>
       </td>
     </tr>    

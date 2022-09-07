@@ -159,6 +159,15 @@ RSpec/NamedSubject:
 RSpec/LetSetup:
   Enabled: false
 
-
 Rails/I18nLocaleTexts:
   Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/Rails/HttpStatus:
+  Enabled: false
+
+RSpec/PredicateMatcher:
+  Enabled: false
+
