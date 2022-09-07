@@ -17,13 +17,13 @@ class CheckpointsController < ApplicationController
   end
 
   def create_resource
-    recurso = Resource.create(
+    new_resource = Resource.create(
       checkpoint_id: @checkpoint.id,
       title: new_resource_params[:title],
       link: new_resource_params[:link]
     )
-    alertas = recurso.errors.any? ? recurso.errors.full_messages.join(";") : ""
-    redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), alert: alertas
+    alert_new_resource = new_resource.errors.any? ? new_resource.errors.full_messages.join(";") : ""
+    redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), alert: alert_new_resource
   end
 
   private
