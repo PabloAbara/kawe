@@ -4,4 +4,5 @@ class Resource < ApplicationRecord
 
   validates :title, presence: true
   validates :link, presence: true
+  validates :link, uniqueness: { message: "ya existe" }
 end

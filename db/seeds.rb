@@ -30,7 +30,7 @@ c3 = Checkpoint.find_or_create_by!(title:'Intro to Ruby', roadmap_id: rmap.id)
 
 # resources
 r1 = Resource.find_or_create_by!(title: "Guía de trabajo GIT", link: "https://www.freecodecamp.org/espanol/news/git-101-un-flujo-de-trabajo-de-git/", checkpoint_id: c1.id)
-r2 = Resource.find_or_create_by!(title: "GIT para dummies", link: "https://www.freecodecamp.org/espanol/news/git-101-un-flujo-de-trabajo-de-git/", checkpoint_id: c1.id)
+r2 = Resource.find_or_create_by!(title: "GIT para dummies", link: "https://www.w3schools.com/git/", checkpoint_id: c1.id)
 r3 = Resource.find_or_create_by!(title: "Docker 101", link: "https://www.docker.com/101-tutorial/", checkpoint_id: c2.id)
 r4 = Resource.find_or_create_by!(title: "Tutorial Docker", link: "https://www.tutorialspoint.com/docker/index.htm", checkpoint_id: c2.id)
 r5 = Resource.find_or_create_by!(title: "Ruby Quickstart", link: "https://www.ruby-lang.org/es/documentation/quickstart/", checkpoint_id: c3.id)
