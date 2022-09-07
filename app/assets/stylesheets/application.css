@@ -1,3 +1,5 @@
+/* ####### BUTTONS ####### */
+
 /* Checkpoint Button */
 
 .active-checkpoint-button {
@@ -19,5 +21,28 @@
     box-shadow: inset 100px 0 0 0 #66d5d5;
     color: white;
     text-decoration: none; 
-  
   }
+
+/* Evaluate Button */
+
+.evaluate-button {
+  background-color: #49ddeb; /* Green */
+  border-color: #49ddeb;
+  height:4vh;
+  color: rgb(0, 0, 0);
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+/* ####### INPUT RATING ####### */
+
+.input-rating {
+  background-color: #ffffff; /* Green */
+  border-color: #06035d;
+  width: 15%;
+  height:4vh;
+  color: rgb(0, 0, 0);
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
