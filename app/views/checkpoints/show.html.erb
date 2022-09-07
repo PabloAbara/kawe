@@ -8,6 +8,7 @@
       <th scope="col">Link</th>
       <th scope="col">Current Avg Rating</th>
       <th scope="col">Rate / Your Rating</th>
+      <th scope="col">Delete Resource</th>
     </tr>
   </thead>
   <% @resources_ratings.each do |resource|%>
@@ -28,7 +29,8 @@
         <% end %>
       <% end %>
       </td>
-    </tr>    
+      <td> <%= button_to "X", delete_resource_roadmap_checkpoint_path(@roadmap, @checkpoint, resource_id: resource[:id]), :class=> "btn btn-danger",:method => :delete %> </td>
+    </tr>
   </tbody>
   <% end %>
 </table>

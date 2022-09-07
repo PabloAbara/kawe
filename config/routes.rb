@@ -1,3 +1,6 @@
+# == Route Map
+#
+
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
   root "roadmaps#show"
@@ -9,6 +12,7 @@ Rails.application.routes.draw do
       member do
         post "create_resource"
         post "rate_resource"
+        delete "delete_resource"
       end
     end
   end

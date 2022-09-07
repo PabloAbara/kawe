@@ -26,6 +26,16 @@ class CheckpointsController < ApplicationController
     redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), alert: alert_new_resource
   end
 
+  def delete_resource
+    if params[:resource_id].present? && @checkpoint.resources.find_by(id: params[:resource_id])
+      resource = @checkpoint.resources.find_by(id: params[:resource_id])
+      resource.destroy!
+      redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), alert: "El recurso ha sido eliminado."
+    else
+      redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), error: "No se encontró recurso o este es inválido."
+    end
+  end
+
   private
 
   def set_roadmap
