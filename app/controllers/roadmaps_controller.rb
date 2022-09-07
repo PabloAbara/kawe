@@ -8,18 +8,27 @@ class RoadmapsController < ApplicationController
   def show; end
 
   def complete_checkpoint
-    if params[:checkpoint_id].present? && @roadmap.checkpoints.find(params[:checkpoint_id]).present?
+    if params[:checkpoint_id].present? && @roadmap.checkpoints.find_by(id: params[:checkpoint_id]).present?
       CompletedCheckpoint.create!(user_id: current_user.id, checkpoint_id: params[:checkpoint_id])
-      redirect_to roadmap_path(@roadmap)
+      redirect_to roadmap_path(@roadmap, message: "Checkpoint marcado como completo")
     else
-      redirect_to roadmap_path(@roadmap, error: "No encuentra checkpoint")
+      redirect_to roadmap_path(@roadmap, error: "No se envió checkpoint o este es inválido.")
     end
   end
 
   def uncomplete_checkpoint
-    checkpoint = @roadmap.checkpoints.find(params[:checkpoint_id])
-    checkpoint.completed_checkpoints.find_by(user_id: current_user.id).destroy!
-    redirect_to roadmap_path(@roadmap)
+    if params[:checkpoint_id].present? && @roadmap.checkpoints.find_by(id: params[:checkpoint_id]).present?
+      checkpoint = @roadmap.checkpoints.find(params[:checkpoint_id])
+      if checkpoint.completed_checkpoints.find_by(user_id: current_user.id).present?
+        completed_checkpoint = checkpoint.completed_checkpoints.find_by(user_id: current_user.id)
+        completed_checkpoint.destroy!
+        redirect_to roadmap_path(@roadmap, message: "Completed checkpoint eliminado")
+      else
+        redirect_to roadmap_path(@roadmap, error: "No se encontró completed checkpoint válido.")
+      end
+    else
+      redirect_to roadmap_path(@roadmap, error: "No se envió checkpoint o este es inválido.")
+    end
   end
 
   private
@@ -28,6 +37,7 @@ class RoadmapsController < ApplicationController
     redirect_to roadmap_path(default_roadmap)
   end
 
+  #Ciclo 1 considera sólo 1 Roadmap
   def default_roadmap
     Roadmap.first
   end

@@ -54,17 +54,74 @@ RSpec.describe RoadmapsController, type: :request do
   end
 
   describe "post complete_checkpoint" do
-    context "without valid checkpoint_id" do 
-      it do #redirect with error messagex
-        post roadmap_complete_checkpoint_path(roadmap)
+    let!(:checkpoint) { create(:checkpoint, roadmap: roadmap) }
 
-        expect(response.body).to include "No+encuentra+checkpoint"
-        #TODO: ¿Es correcto? 
+    context "with valid checkpoint_id" do 
+      it "creates a completed checkpoint" do
+        expect{
+          post roadmap_complete_checkpoint_path(roadmap,checkpoint_id: checkpoint.id)}.to change(CompletedCheckpoint,:count).by(1)
+      end
+    end 
+
+    context "without checkpoint_id" do 
+      it do
+        expect{
+          post roadmap_complete_checkpoint_path(roadmap)}.to change(CompletedCheckpoint,:count).by(0)
       end
     end
+
+    context "without valid checkpoint_id" do 
+      before do
+        checkpoint.delete
+      end
+      
+      it do
+        expect{
+          post roadmap_complete_checkpoint_path(roadmap,checkpoint_id: checkpoint.id)}.to change(CompletedCheckpoint,:count).by(0)
+      end
+    end    
   end
 
   describe "delete uncomplete_checkpoint" do
-    it "uncomplete_checkpoint_route"
+    let!(:checkpoint) { create(:checkpoint, roadmap: roadmap) }
+    let!(:completed_checkpoint) { create(:completed_checkpoint, checkpoint: checkpoint, user: user) }
+    
+    context "with existing completed_checkpoint" do
+      it do
+
+        expect{
+          delete roadmap_uncomplete_checkpoint_path(roadmap,checkpoint_id: checkpoint.id)}.to change(CompletedCheckpoint,:count).by(-1)
+      end
+    end
+
+    context "without existing completed_checkpoint" do
+      before do 
+        completed_checkpoint.delete
+      end
+
+      it do
+        
+        expect{
+          delete roadmap_uncomplete_checkpoint_path(roadmap, checkpoint_id: checkpoint.id)}.to change(CompletedCheckpoint,:count).by(0)
+      end
+    end
+
+    context "without checkpoint_id" do
+      it do
+
+        expect{
+          delete roadmap_uncomplete_checkpoint_path(roadmap)}.to change(CompletedCheckpoint,:count).by(0)
+      end
+    end
+    
+    context "without valid checkpoint_id" do
+      let!(:new_checkpoint) { create(:checkpoint, title: "New Checkpoint") }
+
+      it do
+
+        expect{
+          delete roadmap_uncomplete_checkpoint_path(roadmap, roadmap: roadmap,  checkpoint_id: new_checkpoint.id)}.to change(CompletedCheckpoint,:count).by(0)
+      end
+    end    
   end
 end
