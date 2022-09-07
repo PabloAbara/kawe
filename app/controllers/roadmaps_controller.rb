@@ -8,7 +8,7 @@ class RoadmapsController < ApplicationController
   def show; end
 
   def complete_checkpoint
-    if params[:checkpoint_id].present? && @roadmap.checkpoints.find_by(id: params[:checkpoint_id]).present?
+    if params[:checkpoint_id].present? && @roadmap.checkpoints.find_by(id: params[:checkpoint_id])
       CompletedCheckpoint.create!(user_id: current_user.id, checkpoint_id: params[:checkpoint_id])
       redirect_to roadmap_path(@roadmap, message: "Checkpoint marcado como completo")
     else
@@ -17,7 +17,7 @@ class RoadmapsController < ApplicationController
   end
 
   def uncomplete_checkpoint
-    if params[:checkpoint_id].present? && @roadmap.checkpoints.find_by(id: params[:checkpoint_id]).present?
+    if params[:checkpoint_id].present? && @roadmap.checkpoints.find_by(id: params[:checkpoint_id])
       checkpoint = @roadmap.checkpoints.find(params[:checkpoint_id])
       if checkpoint.completed_checkpoints.find_by(user_id: current_user.id).present?
         completed_checkpoint = checkpoint.completed_checkpoints.find_by(user_id: current_user.id)
@@ -37,7 +37,7 @@ class RoadmapsController < ApplicationController
     redirect_to roadmap_path(default_roadmap)
   end
 
-  #Ciclo 1 considera sólo 1 Roadmap
+  # Ciclo 1 considera sólo 1 Roadmap
   def default_roadmap
     Roadmap.first
   end
