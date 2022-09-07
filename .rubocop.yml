@@ -162,7 +162,6 @@ RSpec/LetSetup:
 Rails/I18nLocaleTexts:
   Enabled: false
 
-<<<<<<< HEAD
 RSpec/MultipleExpectations:
   Enabled: false
 
@@ -171,12 +170,10 @@ RSpec/Rails/HttpStatus:
 
 RSpec/PredicateMatcher:
   Enabled: false
-=======
 Metrics/AbcSize:
   Enabled: false
 
 Metrics/MethodLength:
   Enabled: false
 
->>>>>>> 5198183 (fix: rubocop correction)
 
