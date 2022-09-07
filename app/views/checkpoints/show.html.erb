@@ -10,19 +10,19 @@
       <th scope="col">Rate / Your Rating</th>
     </tr>
   </thead>
-  <% @checkpoint.resources.each do |resource|%>
+  <% @resources_ratings.each do |resource|%>
   <tbody>
     <tr>
-      <th scope="row"> <%= resource.id %> </th>
-      <td> <%= resource.title %></td>
-      <td> <a class="btn btn-secondary" href=<%= resource.link %> target="_blank">Go!</a> </td>
-      <td> <%= ResourceRatingCalculator.calculate_resource_rating(resource) %> </td>
+      <th scope="row"> <%= resource[:id] %> </th>
+      <td> <%= resource[:title] %></td>
+      <td> <a class="btn btn-secondary" href=<%= resource[:link] %> target="_blank">Go!</a> </td>
+      <td> <%= resource[:average_rating] %> </td>
       <td>
-      <% if current_user.resource_ratings.find_by(resource: resource).present? %>
-        <%= current_user.resource_ratings.find_by(resource: resource).rating %>
+      <% if current_user.resource_ratings.find_by(resource_id: resource[:id]).present? %>
+        <%= current_user.resource_ratings.find_by(resource_id: resource[:id]).rating %>
       <% else %>
-        <%= form_with url: rate_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: resource, method: "post" do |form| %>
-          <%= form.hidden_field :resource_id, value: resource.id %>
+        <%= form_with url: rate_resource_roadmap_checkpoint_path(@roadmap, @checkpoint), model: Resource.find(resource[:id]), method: "post" do |form| %>
+          <%= form.hidden_field :resource_id, value: resource[:id] %>
           <%= form.number_field :rating, in: 1..5, step: 1, required: true,  :class => 'input-rating' %>
           <%= form.submit "Evaluar", :class => 'btn btn-primary evaluate-button' %>
         <% end %>
