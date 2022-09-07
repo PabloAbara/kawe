@@ -49,6 +49,7 @@ gem "devise", "~> 4.8", ">= 4.8.1"
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem "annotate"
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "dotenv-rails"
   gem "factory_bot_rails"
@@ -58,7 +59,6 @@ group :development, :test do
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
-  gem 'annotate'
 end
 
 group :development do
