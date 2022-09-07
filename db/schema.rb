@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_01_140939) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_07_194335) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_140939) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["checkpoint_id"], name: "index_resources_on_checkpoint_id"
-    t.index ["link"], name: "index_resources_on_link", unique: true
+    t.index ["link", "checkpoint_id"], name: "index_resources_on_link_and_checkpoint_id", unique: true
   end
 
   create_table "roadmaps", force: :cascade do |t|
