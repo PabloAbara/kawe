@@ -22,9 +22,9 @@
      
       <td>
       <% if checkpoint.completed_checkpoints.exists?(user_id: current_user.id) %>
-        <%= button_to "Incompleto 👮🏻‍♂️", roadmap_uncomplete_checkpoint_path(@roadmap,checkpoint_id: checkpoint.id), :class=> "btn btn-outline-light",:method => :delete %>
+        <%= button_to "Completo ✅", roadmap_uncomplete_checkpoint_path(@roadmap,checkpoint_id: checkpoint.id), :class=> "btn btn-outline-light active-checkpoint-button",:method => :delete %>
       <% else %>
-        <%= button_to "Completo ✅", roadmap_complete_checkpoint_path(@roadmap,checkpoint_id: checkpoint.id), :class=> "btn btn-outline-light active-checkpoint-button",:method => :post %>
+        <%= button_to "Incompleto 👮🏻‍♂️", roadmap_complete_checkpoint_path(@roadmap,checkpoint_id: checkpoint.id), :class=> "btn btn-outline-light",:method => :post %>
       <% end %>
       </td>
     </tr>    

@@ -41,7 +41,7 @@ RSpec.describe RoadmapsController, type: :request do
       it do
         get roadmap_path(roadmap)
 
-        expect(response.body).to include "Incompleto 👮🏻‍♂️"
+        expect(response.body).to include "Completo ✅"
       end
     end
 
@@ -49,7 +49,7 @@ RSpec.describe RoadmapsController, type: :request do
       it do
         get roadmap_path(roadmap)
 
-        expect(response.body).to include "Completo ✅"
+        expect(response.body).to include "Incompleto 👮🏻‍♂️"
       end
     end
   end
