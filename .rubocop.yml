@@ -170,4 +170,10 @@ RSpec/Rails/HttpStatus:
 
 RSpec/PredicateMatcher:
   Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
 
