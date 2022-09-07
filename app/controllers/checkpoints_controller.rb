@@ -4,7 +4,7 @@ class CheckpointsController < ApplicationController
   before_action :set_checkpoint
 
   def show
-    # @resources_rating = ResourceRatingCalculator.new
+    @resources_ratings = ResourceRatingCalculator.get_resources_with_average(@checkpoint)
   end
 
   def rate_resource
