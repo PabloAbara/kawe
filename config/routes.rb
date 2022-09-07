@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :roadmaps, only: %i[index show] do
     post "complete_checkpoint"
     delete "uncomplete_checkpoint"
+    post "create_checkpoint"
     resources :checkpoints, only: [:show] do
       member do
         post "create_resource"

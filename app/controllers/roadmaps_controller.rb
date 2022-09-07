@@ -1,7 +1,7 @@
 class RoadmapsController < ApplicationController
   before_action :authenticate_user!
   before_action :redirect_to_show, only: [:index]
-  before_action :set_roadmap, only: %i[show complete_checkpoint uncomplete_checkpoint]
+  before_action :set_roadmap, only: %i[show complete_checkpoint uncomplete_checkpoint create_checkpoint]
 
   def index; end
 
@@ -29,6 +29,15 @@ class RoadmapsController < ApplicationController
     else
       redirect_to roadmap_path(@roadmap, error: "No se envió checkpoint o este es inválido.")
     end
+  end
+
+  def create_checkpoint
+    new_checkpoint = Checkpoint.create(
+      roadmap_id: params.require(:roadmap_id),
+      title: params.require(:checkpoint)[:title]
+    )
+    alert_new_checkpoint = new_checkpoint.errors.any? ? new_checkpoint.errors.full_messages.join(";") : ""
+    redirect_to roadmap_path(@roadmap), alert: alert_new_checkpoint
   end
 
   private
