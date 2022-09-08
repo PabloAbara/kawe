@@ -19,8 +19,4 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
   end
-  controller do
-    # before_action :authenticate_admin_user!   
-    load_and_authorize_resource :through => :current_admin_user
-  end
 end

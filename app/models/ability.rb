@@ -4,10 +4,11 @@ class Ability
 
 
     def initialize(user)
-        can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: "admin"
-        
+       
+
         if user.role == 'mentor'
             can :manage, :all
+            can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: "admin"
            
         else
             # can :manage, :all

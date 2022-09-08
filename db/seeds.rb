@@ -54,4 +54,4 @@ completed4 = CompletedCheckpoint.find_or_create_by!(user_id: users[2].id, checkp
 completed5 = CompletedCheckpoint.find_or_create_by!(user_id: users[2].id, checkpoint_id: c3.id)
 
 puts "Seeding done." 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', role: 'mentor') if Rails.env.development?
