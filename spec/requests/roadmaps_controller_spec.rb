@@ -131,4 +131,43 @@ RSpec.describe RoadmapsController, type: :request do
       end
     end
   end
+
+  describe "post create_checkpoint" do
+    let!(:new_checkpoint) { create(:checkpoint) }
+
+    context "with valid parameters" do
+      it "creates a checkpoint" do
+        expect do
+          post roadmap_create_checkpoint_path(roadmap, checkpoint: { title: new_checkpoint.title })
+        end.to change(Checkpoint, :count).by(1)
+      end
+
+      it "redirects to roadmap view" do
+        post roadmap_create_checkpoint_path(roadmap, checkpoint: { title: new_checkpoint.title })
+        expect(response).to redirect_to(roadmap_path(roadmap))
+      end
+    end
+
+    context "without valid title" do
+      invalid_checkpoint_title = ""
+
+      it "doesn't create a checkpoint" do
+        expect do
+          post roadmap_complete_checkpoint_path(roadmap,
+                                                checkpoint: { title: invalid_checkpoint_title })
+        end.not_to change(CompletedCheckpoint, :count)
+      end
+    end
+
+    context "without valid roadmap" do
+      invalid_checkpoint_roadmap = 0
+
+      it "doesn't create a checkpoint" do
+        expect do
+          post roadmap_complete_checkpoint_path(invalid_checkpoint_roadmap,
+                                                checkpoint: { title: new_checkpoint.title })
+        end.not_to change(Checkpoint, :count)
+      end
+    end
+  end
 end

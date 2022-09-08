@@ -16,4 +16,7 @@ class Checkpoint < ApplicationRecord
   has_many :users, through: :completed_checkpoints
 
   validates :title, presence: true
+  validates :title,
+            uniqueness: { scope: :roadmap_id,
+                          message: "Ya existe este checkpoint en este Roadmap" }
 end
