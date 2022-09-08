@@ -176,4 +176,5 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Enabled: false
 
-
+RSpec/ExampleLength:
+  Enabled: false
