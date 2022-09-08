@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_07_194335) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_08_135035) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_194335) do
     t.datetime "updated_at", null: false
     t.bigint "roadmap_id", null: false
     t.index ["roadmap_id"], name: "index_checkpoints_on_roadmap_id"
+    t.index ["title", "roadmap_id"], name: "index_checkpoints_on_title_and_roadmap_id", unique: true
   end
 
   create_table "completed_checkpoints", force: :cascade do |t|
