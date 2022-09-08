@@ -8,27 +8,22 @@ RSpec.describe RoadmapsController, type: :request do
     sign_in user
   end
 
-  describe "index" do
+  describe "GET/index" do
     it do
       get roadmaps_path
 
-      expect(response.body).to include "redirected"
+      expect(response).to redirect_to(roadmap_path(roadmap))
     end
   end
 
-  describe "show" do
+  describe "GET/show" do
     let!(:checkpoint) { create(:checkpoint, roadmap: roadmap) }
 
     context "with valid roadmap" do
-      it "checks link showing" do
+      it "checks attributes showing" do
         get roadmap_path(roadmap)
 
         expect(response.body).to include "https://github.com/PabloAbara/kawe"
-      end
-
-      it "checks title showing" do
-        get roadmap_path(roadmap)
-
         expect(response.body).to include "Kawe"
       end
     end
@@ -54,7 +49,7 @@ RSpec.describe RoadmapsController, type: :request do
     end
   end
 
-  describe "post complete_checkpoint" do
+  describe "POST/complete_checkpoint" do
     let!(:checkpoint) { create(:checkpoint, roadmap: roadmap) }
 
     context "with valid checkpoint_id" do
@@ -86,7 +81,7 @@ RSpec.describe RoadmapsController, type: :request do
     end
   end
 
-  describe "delete uncomplete_checkpoint" do
+  describe "DELETE/uncomplete_checkpoint" do
     let!(:checkpoint) { create(:checkpoint, roadmap: roadmap) }
     let!(:completed_checkpoint) do
       create(:completed_checkpoint, checkpoint: checkpoint, user: user)
