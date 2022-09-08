@@ -18,5 +18,6 @@ FactoryBot.define do
     name { "Test2" }
     password { "123456" }
     password_confirmation { "123456" }
+    role {"student"}
   end
 end

@@ -15,7 +15,7 @@ users = []
     if user
         users.append(user)
     else
-        new_user = User.create!(email: "test#{a}@fin.cl", name: "test#{a}", password: "123456", password_confirmation: "123456")
+        new_user = User.create!(email: "test#{a}@fin.cl", name: "test#{a}", password: "123456", password_confirmation: "123456", role: "student")
         users.append(new_user)
     end
 end

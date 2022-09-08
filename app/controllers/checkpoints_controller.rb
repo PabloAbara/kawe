@@ -3,6 +3,10 @@ class CheckpointsController < ApplicationController
   before_action :set_roadmap
   before_action :set_checkpoint
 
+  # load_and_authorize_resource
+
+
+
   def show
     @resources_ratings = ResourceRatingCalculator.get_resources_with_average(@checkpoint)
   end

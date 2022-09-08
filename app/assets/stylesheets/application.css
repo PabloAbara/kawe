@@ -34,7 +34,7 @@
   margin-bottom: 5px;
 }
 
-/* ####### INPUT RATING ####### */
+/* ####### INPUTS ####### */
 
 .input-rating {
   background-color: #ffffff; /* Green */
@@ -44,5 +44,13 @@
   color: rgb(0, 0, 0);
   padding: 5px;
   margin-bottom: 5px;
+}
+
+.input-form {
+  width: 25%;
+}
+
+.check-input-button {
+  margin: 2% 0.5% 2% 0%;
 }
 
