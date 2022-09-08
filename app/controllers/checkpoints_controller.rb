@@ -8,33 +8,53 @@ class CheckpointsController < ApplicationController
   end
 
   def rate_resource
-    ResourceRating.create!(
-      user_id: current_user.id,
-      resource_id: resource_params[:resource_id].to_i,
-      rating: resource_params[:rating].to_i
-    )
-    redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint)
+    unless resource_params.nil? || resource_params[:resource_id].nil? || resource_params[:rating].nil?
+      new_resource_rating = ResourceRating.create(
+        user_id: current_user.id,
+        resource_id: resource_params[:resource_id].to_i,
+        rating: resource_params[:rating].to_i
+      )
+      alert_new_resource_rating = new_resource_rating.errors.any? ? new_resource_rating.errors.full_messages.join(";") : ""
+      if alert_new_resource_rating.empty?
+      redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), notice: "Se ha evaluado un recurso!"
+      else
+        redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), alert: alert_new_resource_rating
+      end
+    else
+      redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), alert: "Error: Recurso no evaluado"
+    end
   end
 
   def create_resource
-    new_resource = Resource.create(
-      checkpoint_id: @checkpoint.id,
-      title: new_resource_params[:title],
-      link: new_resource_params[:link]
-    )
-    alert_new_resource = new_resource.errors.any? ? new_resource.errors.full_messages.join(";") : ""
-    redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), alert: alert_new_resource
+    unless new_resource_params.nil? || new_resource_params[:title].empty? || new_resource_params[:link].empty?
+      new_resource = Resource.create(
+        checkpoint_id: @checkpoint.id,
+        title: new_resource_params[:title],
+        link: new_resource_params[:link]
+      )
+      alert_new_resource = new_resource.errors.any? ? new_resource.errors.full_messages.join(";") : ""
+      if alert_new_resource.empty?
+      redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), notice: "Se ha creado un nuevo recurso!"
+      else
+        redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), alert: alert_new_resource
+      end
+    else
+      redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), alert: "Error: Recurso no creado"
+    end
   end
 
   def delete_resource
     if params[:resource_id].present? && @checkpoint.resources.find_by(id: params[:resource_id])
       resource = @checkpoint.resources.find_by(id: params[:resource_id])
-      resource.destroy!
-      redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint),
-                  notice: "El recurso ha sido eliminado."
+      deleted_resource = resource.destroy!
+      alert_deleted_resource = deleted_resource.errors.any? ? deleted_resource.errors.full_messages.join(";") : ""
+      if alert_deleted_resource.empty?
+        redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), notice: "El recurso ha sido eliminado."
+      else
+        redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), alert: alert_deleted_resource
+      end
     else
-      redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint),
-                  alert: "No se encontró recurso o este es inválido."
+      redirect_to roadmap_checkpoint_path(@roadmap, @checkpoint), alert: "No se encontró recurso o este es inválido."
     end
   end
 
@@ -57,6 +77,10 @@ class CheckpointsController < ApplicationController
   end
 
   def new_resource_params
-    params.require(:resource).permit(:title, :link)
+    if params[:resource].present?
+      params.require(:resource).permit(:title, :link)
+    else
+      nil
+    end
   end
 end

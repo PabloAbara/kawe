@@ -12,7 +12,7 @@ RSpec.describe RoadmapsController, type: :request do
     it do
       get roadmaps_path
 
-      expect(response.body).to include "redirected"
+      expect(response).to redirect_to(roadmap_path(roadmap))
     end
   end
 
