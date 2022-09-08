@@ -46,12 +46,12 @@ gem "sassc-rails"
 
 gem "devise", "~> 4.8", ">= 4.8.1"
 
-gem 'activeadmin'
+gem "activeadmin"
 
 # Plus integrations with:
-gem 'cancancan'
-gem 'draper'
-gem 'pundit'
+gem "cancancan"
+gem "draper"
+gem "pundit"
 
 # gem "image_processing", "~> 1.2"
 

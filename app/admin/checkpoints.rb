@@ -1,15 +1,15 @@
-ActiveAdmin.register Roadmap do
+ActiveAdmin.register Checkpoint do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :title, :project_link
+  # permit_params :title, :roadmap_id
   #
   # or
   #
   # permit_params do
-  #   permitted = [:title, :project_link]
+  #   permitted = [:title, :roadmap_id]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
