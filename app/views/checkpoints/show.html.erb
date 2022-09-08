@@ -8,7 +8,9 @@
       <th scope="col">Link</th>
       <th scope="col">Current Avg Rating</th>
       <th scope="col">Rate / Your Rating</th>
+      <% if can? :destroy, @resource %>
       <th scope="col">Delete Resource</th>
+      <% end %>
     </tr>
   </thead>
   <% @resources_ratings.each do |resource|%>
@@ -29,7 +31,14 @@
         <% end %>
       <% end %>
       </td>
-      <td> <%= button_to "X", delete_resource_roadmap_checkpoint_path(@roadmap, @checkpoint, resource_id: resource[:id]), :class=> "btn btn-danger",:method => :delete %> </td>
+ <% if can? :destroy, @resource %>
+      <td> 
+     
+      <%= button_to "X", delete_resource_roadmap_checkpoint_path(@roadmap, @checkpoint, resource_id: resource[:id]), :class=> "btn btn-danger",:method => :delete %> 
+     
+      </td>
+        <% end %>
+
     </tr>
   </tbody>
   <% end %>
@@ -51,11 +60,11 @@
 </div>
 <!-- Button trigger modal -->
 <% puts "AQUI: #{can? :create, @resource}" %>
- <% if can? :create, @resource %>
+
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNewResourceModal">
   + Nuevo recurso
 </button>
-<% end %>
+
 
 <!-- Modal -->
 <div class="modal fade" id="AddNewResourceModal" tabindex="-1" aria-labelledby="resourceModalLabel" aria-hidden="true">

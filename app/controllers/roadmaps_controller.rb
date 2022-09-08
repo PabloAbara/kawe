@@ -4,6 +4,7 @@ class RoadmapsController < ApplicationController
   before_action :set_roadmap, only: %i[show complete_checkpoint uncomplete_checkpoint
                                        create_checkpoint]
 
+
   def index; end
 
   def show; end

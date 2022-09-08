@@ -3,7 +3,7 @@ class CheckpointsController < ApplicationController
   before_action :set_roadmap
   before_action :set_checkpoint
 
-  # load_and_authorize_resource
+  load_and_authorize_resource
 
 
 
