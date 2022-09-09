@@ -10,7 +10,7 @@
 #  updated_at  :datetime         not null
 #
 FactoryBot.define do
-  factory :resources_ratings do
+  factory :resource_rating do
     rating { 5 }
     user
     resource
