@@ -7,11 +7,9 @@ class Ability
       can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: "admin"
 
     else
-      # can :manage, :all
       can :read, :all
       can :create_resource, :all
-      # can :update, Resource, user: user
-      # can :destroy, Resource, user: user
+      can :rate_resource, :all
     end
   end
 end
