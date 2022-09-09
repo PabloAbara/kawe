@@ -5,7 +5,7 @@
       <%= content_tag(:div, msg) %>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-  <% else %>
+  <% elsif name == "alert" %>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <%= content_tag(:div, msg) %>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
