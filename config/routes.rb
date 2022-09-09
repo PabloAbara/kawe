@@ -5,9 +5,8 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { registrations: "users/registrations" }
-  devise_scope :user do
-    root "roadmap#index"
-  end
+  get 'home/index'
+  root 'home#index'
 
   resources :roadmaps, only: %i[index show] do
     post "complete_checkpoint"
