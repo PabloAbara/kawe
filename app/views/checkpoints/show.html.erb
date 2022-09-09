@@ -32,8 +32,8 @@
       <% end %>
       </td>
       <% if can? :destroy, @resource %>
-        <td> 
-          <%= button_to "X", delete_resource_roadmap_checkpoint_path(@roadmap, @checkpoint, resource_id: resource[:id]), :class=> "btn btn-danger",:method => :delete %> 
+        <td>
+          <%= button_to "X", delete_resource_roadmap_checkpoint_path(@roadmap, @checkpoint, resource_id: resource[:id]), :class=> "btn btn-danger",:method => :delete %>
         </td>
       <% end %>
     </tr>
