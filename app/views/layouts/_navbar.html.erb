@@ -1,12 +1,14 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <a class="navbar-brand" href="#">---The Kawe---</a>
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to "Home", root_path,class: "nav-link btn" %>
-      </li>
-    </ul>
-  </div>
+  <% if current_user %>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to "Home", roadmaps_path,class: "nav-link btn" %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
   <div class="flex-row-reverse ">
     <ul class="navbar-nav" style="padding-right: 10px">
       <% if !current_user %>

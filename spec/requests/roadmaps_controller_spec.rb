@@ -59,10 +59,9 @@ RSpec.describe RoadmapsController, type: :request do
         end.to change(CompletedCheckpoint, :count).by(1)
       end
 
-      it "redirects and sends flash message" do
+      it "redirects correctly" do
         post roadmap_complete_checkpoint_path(roadmap, checkpoint_id: checkpoint.id)
         expect(response).to redirect_to(roadmap_path(roadmap))
-        expect(flash[:notice]).to be_present
       end
     end
 
@@ -112,10 +111,9 @@ RSpec.describe RoadmapsController, type: :request do
         end.to change(CompletedCheckpoint, :count).by(-1)
       end
 
-      it "redirects and sends flash message" do
+      it "redirects correctly" do
         delete roadmap_uncomplete_checkpoint_path(roadmap, checkpoint_id: checkpoint.id)
         expect(response).to redirect_to(roadmap_path(roadmap))
-        expect(flash[:notice]).to be_present
       end
     end
 
