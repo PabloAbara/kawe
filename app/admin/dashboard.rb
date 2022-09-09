@@ -10,10 +10,10 @@ ActiveAdmin.register_page "Dashboard" do
     Roadmap.first.checkpoints.each do |checkpoint|
       div class: "wrapper" do
         div class: "skill" do
-          h3 checkpoint.title
-          h3 "Checkpoint 1"
-          div class: "skill-bar skill1" do
-            span class: "skill-count1" "95%"
+          h3 "#{checkpoint.title}: #{((checkpoint.users.count.to_f / User.count) * 100).round(2)}%"
+          div class: "
+          skill-bar skill#{((checkpoint.users.count.to_f / User.count) * 100).round(-1)}" do
+            span class: "skill-count1"
           end
         end
       end
