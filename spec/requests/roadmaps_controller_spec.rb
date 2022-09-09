@@ -58,13 +58,25 @@ RSpec.describe RoadmapsController, type: :request do
           post roadmap_complete_checkpoint_path(roadmap, checkpoint_id: checkpoint.id)
         end.to change(CompletedCheckpoint, :count).by(1)
       end
+
+      it "redirects and sends flash message" do
+        post roadmap_complete_checkpoint_path(roadmap, checkpoint_id: checkpoint.id)
+        expect(response).to redirect_to(roadmap_path(roadmap))
+        expect(flash[:notice]).to be_present
+      end
     end
 
     context "without checkpoint_id" do
-      it do
+      it "doesn't create a completed checkpoint" do
         expect do
           post roadmap_complete_checkpoint_path(roadmap)
         end.not_to change(CompletedCheckpoint, :count)
+      end
+
+      it "redirects and sends flash message" do
+        post roadmap_complete_checkpoint_path(roadmap)
+        expect(response).to redirect_to(roadmap_path(roadmap))
+        expect(flash[:alert]).to be_present
       end
     end
 
@@ -73,10 +85,16 @@ RSpec.describe RoadmapsController, type: :request do
         checkpoint.delete
       end
 
-      it do
+      it "doesn't create a completed checkpoint" do
         expect do
           post roadmap_complete_checkpoint_path(roadmap, checkpoint_id: checkpoint.id)
         end.not_to change(CompletedCheckpoint, :count)
+      end
+
+      it "redirects and sends flash message" do
+        post roadmap_complete_checkpoint_path(roadmap, checkpoint_id: checkpoint.id)
+        expect(response).to redirect_to(roadmap_path(roadmap))
+        expect(flash[:alert]).to be_present
       end
     end
   end
@@ -88,10 +106,16 @@ RSpec.describe RoadmapsController, type: :request do
     end
 
     context "with existing completed_checkpoint" do
-      it do
+      it "deletes completed checkpoint" do
         expect do
           delete roadmap_uncomplete_checkpoint_path(roadmap, checkpoint_id: checkpoint.id)
         end.to change(CompletedCheckpoint, :count).by(-1)
+      end
+
+      it "redirects and sends flash message" do
+        delete roadmap_uncomplete_checkpoint_path(roadmap, checkpoint_id: checkpoint.id)
+        expect(response).to redirect_to(roadmap_path(roadmap))
+        expect(flash[:notice]).to be_present
       end
     end
 
@@ -100,34 +124,53 @@ RSpec.describe RoadmapsController, type: :request do
         completed_checkpoint.delete
       end
 
-      it do
+      it "doesn't delete completed checkpoint" do
         expect do
           delete roadmap_uncomplete_checkpoint_path(roadmap, checkpoint_id: checkpoint.id)
         end.not_to change(CompletedCheckpoint, :count)
       end
+
+      it "redirects and sends flash message" do
+        delete roadmap_uncomplete_checkpoint_path(roadmap, checkpoint_id: checkpoint.id)
+        expect(response).to redirect_to(roadmap_path(roadmap))
+        expect(flash[:alert]).to be_present
+      end
     end
 
     context "without checkpoint_id" do
-      it do
+      it "doesn't delete completed checkpoint" do
         expect do
           delete roadmap_uncomplete_checkpoint_path(roadmap)
         end.not_to change(CompletedCheckpoint, :count)
+      end
+
+      it "redirects and sends flash message" do
+        delete roadmap_uncomplete_checkpoint_path(roadmap)
+        expect(response).to redirect_to(roadmap_path(roadmap))
+        expect(flash[:alert]).to be_present
       end
     end
 
     context "without valid checkpoint_id" do
       let!(:new_checkpoint) { create(:checkpoint, title: "New Checkpoint") }
 
-      it do
+      it "doesn't delete completed checkpoint" do
         expect do
           delete roadmap_uncomplete_checkpoint_path(roadmap, roadmap: roadmap,
                                                              checkpoint_id: new_checkpoint.id)
         end.not_to change(CompletedCheckpoint, :count)
       end
+
+      it "redirects and sends flash message" do
+        delete roadmap_uncomplete_checkpoint_path(roadmap, roadmap: roadmap,
+                                                           checkpoint_id: new_checkpoint.id)
+        expect(response).to redirect_to(roadmap_path(roadmap))
+        expect(flash[:alert]).to be_present
+      end
     end
   end
 
-  describe "post create_checkpoint" do
+  describe "POST/create_checkpoint" do
     let!(:new_checkpoint) { create(:checkpoint) }
 
     context "with valid parameters" do
@@ -137,9 +180,10 @@ RSpec.describe RoadmapsController, type: :request do
         end.to change(Checkpoint, :count).by(1)
       end
 
-      it "redirects to roadmap view" do
+      it "redirects and sends flash message" do
         post roadmap_create_checkpoint_path(roadmap, checkpoint: { title: new_checkpoint.title })
         expect(response).to redirect_to(roadmap_path(roadmap))
+        expect(flash[:notice]).to be_present
       end
     end
 
@@ -152,6 +196,13 @@ RSpec.describe RoadmapsController, type: :request do
                                                 checkpoint: { title: invalid_checkpoint_title })
         end.not_to change(CompletedCheckpoint, :count)
       end
+
+      it "redirects and sends flash message" do
+        post roadmap_complete_checkpoint_path(roadmap,
+                                              checkpoint: { title: invalid_checkpoint_title })
+        expect(response).to redirect_to(roadmap_path(roadmap))
+        expect(flash[:alert]).to be_present
+      end
     end
 
     context "without valid roadmap" do
@@ -162,6 +213,13 @@ RSpec.describe RoadmapsController, type: :request do
           post roadmap_complete_checkpoint_path(invalid_checkpoint_roadmap,
                                                 checkpoint: { title: new_checkpoint.title })
         end.not_to change(Checkpoint, :count)
+      end
+
+      it "redirects and sends flash message" do
+        post roadmap_complete_checkpoint_path(invalid_checkpoint_roadmap,
+                                              checkpoint: { title: new_checkpoint.title })
+        expect(response).to redirect_to(roadmap_path(roadmap))
+        expect(flash[:alert]).to be_present
       end
     end
   end
