@@ -11,9 +11,9 @@ class RoadmapsController < ApplicationController
   def complete_checkpoint
     if params[:checkpoint_id].present? && @roadmap.checkpoints.find_by(id: params[:checkpoint_id])
       CompletedCheckpoint.create!(user_id: current_user.id, checkpoint_id: params[:checkpoint_id])
-      redirect_to roadmap_path(@roadmap, message: "Checkpoint marcado como completo")
+      redirect_to roadmap_path(@roadmap), notice: "Checkpoint marcado como completo."
     else
-      redirect_to roadmap_path(@roadmap, error: "No se envió checkpoint o este es inválido.")
+      redirect_to roadmap_path(@roadmap), alert: "No se envió checkpoint o este es inválido."
     end
   end
 
@@ -23,12 +23,12 @@ class RoadmapsController < ApplicationController
       if checkpoint.completed_checkpoints.find_by(user_id: current_user.id).present?
         completed_checkpoint = checkpoint.completed_checkpoints.find_by(user_id: current_user.id)
         completed_checkpoint.destroy!
-        redirect_to roadmap_path(@roadmap, message: "Completed checkpoint eliminado")
+        redirect_to roadmap_path(@roadmap), notice: "Completed checkpoint eliminado."
       else
-        redirect_to roadmap_path(@roadmap, error: "No se encontró completed checkpoint válido.")
+        redirect_to roadmap_path(@roadmap), alert: "No se encontró completed checkpoint válido."
       end
     else
-      redirect_to roadmap_path(@roadmap, error: "No se envió checkpoint o este es inválido.")
+      redirect_to roadmap_path(@roadmap), alert: "No se envió checkpoint o este es inválido."
     end
   end
 
@@ -37,8 +37,12 @@ class RoadmapsController < ApplicationController
       roadmap_id: params.require(:roadmap_id),
       title: params.require(:checkpoint)[:title]
     )
-    alert_checkpoint = new_checkpoint.errors.full_messages.join(";") if new_checkpoint.errors.any?
-    redirect_to roadmap_path(@roadmap), alert: alert_checkpoint
+    if new_checkpoint.errors.any?
+      alert_checkpoint = new_checkpoint.errors.full_messages.join(";")
+      redirect_to roadmap_path(@roadmap), alert: alert_checkpoint
+    else
+      redirect_to roadmap_path(@roadmap), notice: "Checkpoint creado"
+    end
   end
 
   private
