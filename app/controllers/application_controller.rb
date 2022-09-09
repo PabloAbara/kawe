@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     redirect_to admin_organizations_path, alert: exception.message
   end
 
-  def after_sign_in_path_for(resource_or_scope)
+  def after_sign_in_path_for(_resource_or_scope)
     roadmaps_path
   end
 
