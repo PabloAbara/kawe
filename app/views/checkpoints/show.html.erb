@@ -8,7 +8,9 @@
       <th scope="col">Link</th>
       <th scope="col">Current Avg Rating</th>
       <th scope="col">Rate / Your Rating</th>
+      <% if can? :destroy, @resource %>
       <th scope="col">Delete Resource</th>
+      <% end %>
     </tr>
   </thead>
   <% @resources_ratings.each do |resource|%>
@@ -29,24 +31,26 @@
         <% end %>
       <% end %>
       </td>
-      <td> <%= button_to "X", delete_resource_roadmap_checkpoint_path(@roadmap, @checkpoint, resource_id: resource[:id]), :class=> "btn btn-danger",:method => :delete %> </td>
+      <% if can? :destroy, @resource %>
+        <td> 
+          <%= button_to "X", delete_resource_roadmap_checkpoint_path(@roadmap, @checkpoint, resource_id: resource[:id]), :class=> "btn btn-danger",:method => :delete %> 
+        </td>
+      <% end %>
     </tr>
   </tbody>
   <% end %>
 </table>
 
-<div class="container">
-  <div class="row">
-    <div class="col-11">
+<div class="columns">
+  <div class="column">
     <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNewResourceModal">
         + Nuevo recurso
       </button>
-    </div>
-    <div class="col-1" >
-      <!-- Button back -->
-      <%= button_to "VOLVER", roadmap_path(@roadmap), :class => "btn btn-warning", :method => :get %>
-    </div>
+  </div>
+  <div class="column">
+    <!-- Button back -->
+    <%= button_to "VOLVER", roadmap_path(@roadmap), :class => "btn btn-warning", :method => :get %>
   </div>
 </div>
 

@@ -14,15 +14,13 @@ RSpec.describe Users::RegistrationsController, type: :request do
   end
 
   describe "POST/create" do
-    let(:user_params) do
-      {
-        name: "Example User",
-        email: "user@example.com",
-        password: "123456",
-        password_confirmation: "123456"
-      }
-    end
-
+    user_params = {
+      name: "Test2",
+      email: "test1@fin.cll",
+      password: "123456",
+      password_confirmation: "123456",
+      role: "mentor"
+    }
     context "with valid inputs" do
       it "creates a record in users table" do
         expect do

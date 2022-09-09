@@ -17,6 +17,9 @@
           <p style="padding: 8px; margin-bottom: 0px"> <span style="color: rgba(255, 255, 255, 0.55); vertical-align: middle"> Usuario: <%= current_user.name %> </span> </p>
         </li> 
         <li class="nav-item">
+          <p style="padding: 8px; margin-bottom: 0px"> <span style="color: rgba(255, 255, 255, 0.55); vertical-align: middle"> Rol: <%= current_user.role %> </span> </p>
+        </li> 
+        <li class="nav-item">
           <%= link_to "Sign Out", destroy_user_session_path, class:"nav-link btn", data: { "turbo-method": :delete } %>
         </li> 
       <% end %>      

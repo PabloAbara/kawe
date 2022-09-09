@@ -33,9 +33,11 @@
 </table>
 
 <!-- Button trigger modal -->
+<% if can? :create_checkpoint, @checkpoint %>
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNewCheckpointModal">
   + Nuevo Checkpoint
 </button>
+<% end %>
 
 <!-- Modal -->
 <div class="modal fade" id="AddNewCheckpointModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
