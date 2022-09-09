@@ -35,10 +35,20 @@
   <% end %>
 </table>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNewResourceModal">
-  + Nuevo recurso
-</button>
+<div class="container">
+  <div class="row">
+    <div class="col-11">
+    <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNewResourceModal">
+        + Nuevo recurso
+      </button>
+    </div>
+    <div class="col-1" >
+      <!-- Button back -->
+      <%= button_to "VOLVER", roadmap_path(@roadmap), :class => "btn btn-warning", :method => :get %>
+    </div>
+  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="AddNewResourceModal" tabindex="-1" aria-labelledby="resourceModalLabel" aria-hidden="true">
