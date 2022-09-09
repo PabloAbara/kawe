@@ -27,11 +27,6 @@ RSpec.describe Users::RegistrationsController, type: :request do
           post user_registration_path, params: { user: user_params }
         end.to change(User, :count).by(1)
       end
-
-      it "redirects to the root" do
-        post user_registration_path, params: { user: user_params }
-        expect(response).to redirect_to(root_path)
-      end
     end
   end
 end
