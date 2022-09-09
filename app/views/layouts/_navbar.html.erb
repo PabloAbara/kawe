@@ -1,16 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <a class="navbar-brand" href="#">---The Kawe---</a>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <%= link_to "Home", root_path,class: "nav-link btn" %>
       </li>
+    </ul>
+  </div>
+  <div class="flex-row-reverse ">
+    <ul class="navbar-nav" style="padding-right: 10px">
       <% if !current_user %>
       <li class="nav-item">
         <%= link_to "Sign In", new_user_session_path, class:"nav-link btn"%>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Sign Up", new_user_registration_path, class: "nav-link btn"%>
       </li>
       <% else %>
         <li class="nav-item">
@@ -18,7 +19,7 @@
         </li>
         <li class="nav-item">
           <p style="padding: 8px; margin-bottom: 0px"> <span style="color: rgba(255, 255, 255, 0.55); vertical-align: middle"> Rol: <%= current_user.role %> </span> </p>
-        </li> 
+        </li>
         <li class="nav-item">
           <%= link_to "Sign Out", destroy_user_session_path, class:"nav-link btn", data: { "turbo-method": :delete } %>
         </li>
