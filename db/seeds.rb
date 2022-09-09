@@ -71,8 +71,8 @@ CompletedCheckpoint.find_or_create_by!(user_id: users[1].id, checkpoint_id: c2.i
 CompletedCheckpoint.find_or_create_by!(user_id: users[2].id, checkpoint_id: c1.id)
 CompletedCheckpoint.find_or_create_by!(user_id: users[2].id, checkpoint_id: c3.id)
 
-Rails.logger.debug "Seeding done."
-if Rails.env.development?
-  AdminUser.create!(email: "admin@example.com", password: "password",
+# Admin user
+AdminUser.create!(email: "admin@example.com", password: "password",
                     password_confirmation: "password", role: "mentor")
-end
+
+Rails.logger.debug "Seeding done."
