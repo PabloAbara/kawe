@@ -1,11 +1,7 @@
 class ResourcesController < ApplicationController
-    load_and_authorize_resource
-  
-    def index
-    end
-  
-    def show
-    end
+  load_and_authorize_resource
 
-  end
-  
+  def index; end
+
+  def show; end
+end

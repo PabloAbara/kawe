@@ -31,40 +31,28 @@
         <% end %>
       <% end %>
       </td>
- <% if can? :destroy, @resource %>
-      <td> 
-     
-      <%= button_to "X", delete_resource_roadmap_checkpoint_path(@roadmap, @checkpoint, resource_id: resource[:id]), :class=> "btn btn-danger",:method => :delete %> 
-     
-      </td>
-        <% end %>
-
+      <% if can? :destroy, @resource %>
+        <td> 
+          <%= button_to "X", delete_resource_roadmap_checkpoint_path(@roadmap, @checkpoint, resource_id: resource[:id]), :class=> "btn btn-danger",:method => :delete %> 
+        </td>
+      <% end %>
     </tr>
   </tbody>
   <% end %>
 </table>
 
-<div class="container">
-  <div class="row">
-    <div class="col-11">
+<div class="columns">
+  <div class="column">
     <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNewResourceModal">
         + Nuevo recurso
       </button>
-    </div>
-    <div class="col-1" >
-      <!-- Button back -->
-      <%= button_to "VOLVER", roadmap_path(@roadmap), :class => "btn btn-warning", :method => :get %>
-    </div>
+  </div>
+  <div class="column">
+    <!-- Button back -->
+    <%= button_to "VOLVER", roadmap_path(@roadmap), :class => "btn btn-warning", :method => :get %>
   </div>
 </div>
-<!-- Button trigger modal -->
-<% puts "AQUI: #{can? :create, @resource}" %>
-
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNewResourceModal">
-  + Nuevo recurso
-</button>
-
 
 <!-- Modal -->
 <div class="modal fade" id="AddNewResourceModal" tabindex="-1" aria-labelledby="resourceModalLabel" aria-hidden="true">

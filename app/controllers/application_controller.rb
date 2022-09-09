@@ -5,12 +5,8 @@ class ApplicationController < ActionController::Base
     redirect_to admin_organizations_path, alert: exception.message
   end
 
-  rescue_from CanCan::AccessDenied do |exception|
+  rescue_from CanCan::AccessDenied do |_exception|
     flash[:error] = "Access denied."
     redirect_to root_url
   end
 end
-
-
-
-

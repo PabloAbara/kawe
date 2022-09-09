@@ -54,3 +54,16 @@
   margin: 2% 0.5% 2% 0%;
 }
 
+/* ####### COLUMNS ####### */
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 25%;
+}
+
+.column {
+  flex: 50%;
+}
+

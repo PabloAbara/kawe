@@ -178,3 +178,9 @@ Metrics/MethodLength:
 
 RSpec/ExampleLength:
   Enabled: false
+
+Lint/ImplicitStringConcatenation:
+  Enabled: false
+
+Lint/EmptyBlock:
+  Enabled: false

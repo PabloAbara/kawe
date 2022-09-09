@@ -5,8 +5,6 @@ class CheckpointsController < ApplicationController
 
   load_and_authorize_resource
 
-
-
   def show
     @resources_ratings = ResourceRatingCalculator.get_resources_with_average(@checkpoint)
   end

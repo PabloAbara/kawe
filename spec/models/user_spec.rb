@@ -16,7 +16,8 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   subject do
-    described_class.new(email: "test@fin.cl", password: "123456", password_confirmation: "123456", role: "mentor")
+    described_class.new(email: "test@fin.cl", password: "123456", password_confirmation: "123456",
+                        role: "mentor")
   end
 
   it "is valid with valid attributes" do
